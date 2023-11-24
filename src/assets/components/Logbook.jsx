@@ -18,16 +18,16 @@ const Logbook = () => {
     <>
       {/* Data Work */}
       <div className="d-flex flex-column align-items-center justify-content-center mt-5">
-  <img
-    src={Emoticon}
-    alt="Logo de obra"
-    width={100}
-    className="img-fluid mb-3"
-  />
-  <h1 className="text-center fs-1 fw-bold">
-    Bitácora de <span className="text-primary">Obra</span>
-  </h1>
-</div>
+        <img
+          src={Emoticon}
+          alt="Logo de obra"
+          width={100}
+          className="img-fluid mb-3"
+        />
+        <h1 className="text-center fs-1 fw-bold">
+          Bitácora de <span className="text-primary">Obra</span>
+        </h1>
+      </div>
       <div className="p-3 mx-3 mt-5 shadow p-3 mb-5 bg-body-tertiary rounded row justify-content-center">
         <h3 className="">Datos de la Obra</h3>
         <form
@@ -339,7 +339,7 @@ const Logbook = () => {
         </form>
         <div className="d-grid gap-2">
           <button className="btn btn-primary" type="button">
-            ENVIAR
+            GUARDAR
           </button>
         </div>
       </div>
