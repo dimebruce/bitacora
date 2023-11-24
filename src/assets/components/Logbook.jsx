@@ -1,14 +1,33 @@
-import React from "react";
-
-const handleSubmit = (e) => {
-  e.preventDefault();
-  console.log("Se envió form");
-};
+import React, { useState } from "react";
+import Emoticon from '/emoticon.png'
 
 const Logbook = () => {
+  const [selectedActivity, setSelectedActivity] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Se envió form");
+    // Perform any additional actions on form submission if needed
+  };
+
+  const handleActivitySelection = (activity) => {
+    setSelectedActivity(activity);
+  };
+
   return (
     <>
       {/* Data Work */}
+      <div className="d-flex flex-column align-items-center justify-content-center mt-5">
+  <img
+    src={Emoticon}
+    alt="Logo de obra"
+    width={100}
+    className="img-fluid mb-3"
+  />
+  <h1 className="text-center fs-1 fw-bold">
+    Bitácora de <span className="text-primary">Obra</span>
+  </h1>
+</div>
       <div className="p-3 mx-3 mt-5 shadow p-3 mb-5 bg-body-tertiary rounded row justify-content-center">
         <h3 className="">Datos de la Obra</h3>
         <form
@@ -37,7 +56,7 @@ const Logbook = () => {
               type="text"
               className="form-control"
               id="address"
-              placeholder="Carretera S/N, Yucantán"
+              placeholder="Carretera S/N, Yucatán"
               required
             />
             <div className="valid-feedback"></div>
@@ -58,7 +77,7 @@ const Logbook = () => {
                 aria-describedby="inputGroupPrepend"
                 required
               />
-              <div className="invalid-feedback">Please choose a username.</div>
+              <div className="invalid-feedback">Por favor, elige un nombre de usuario.</div>
             </div>
           </div>
           <div className="col-md-2">
@@ -77,7 +96,7 @@ const Logbook = () => {
                 aria-describedby="inputGroupPrepend"
                 required
               />
-              <div className="invalid-feedback">Please choose a username.</div>
+              <div className="invalid-feedback">Por favor, elige un nombre de usuario.</div>
             </div>
           </div>
           <div className="col-md-6">
@@ -91,7 +110,7 @@ const Logbook = () => {
               placeholder="23/02/2022"
               required
             />
-            <div className="invalid-feedback">Please provide a valid city.</div>
+            <div className="invalid-feedback">Por favor, proporciona una ciudad válida.</div>
           </div>
           <div className="col-md-6">
             <label htmlFor="endDate" className="form-label">
@@ -159,12 +178,12 @@ const Logbook = () => {
                 aria-describedby="inputGroupPrepend"
                 required
               />
-              <div className="invalid-feedback">Please choose a username.</div>
+              <div className="invalid-feedback">Por favor, elige un nombre de usuario.</div>
             </div>
           </div>
           <div className="col-md-2">
             <label htmlFor="phoneBusiness" className="form-label">
-              Télefono
+              Teléfono
             </label>
             <div className="input-group has-validation">
               <input
@@ -175,7 +194,7 @@ const Logbook = () => {
                 aria-describedby="inputGroupPrepend"
                 required
               />
-              <div className="invalid-feedback">Please choose a username.</div>
+              <div className="invalid-feedback">Por favor, elige un nombre de usuario.</div>
             </div>
           </div>
         </form>
@@ -183,13 +202,74 @@ const Logbook = () => {
 
       {/* Data Activity */}
       <div className="p-3 mx-3 mt-5 shadow p-3 mb-5 bg-body-tertiary rounded">
-        <h3>Actividades</h3>
+        <div className="btn-group">
+          <button
+            type="button"
+            className="btn btn-primary dropdown-toggle my-2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {selectedActivity || 'Escoge la actividad'}
+          </button>
+          <ul className="dropdown-menu">
+            <li>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => handleActivitySelection('Estimación')}
+              >
+                Estimación
+              </a>
+            </li>
+            <li>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => handleActivitySelection('Convenio')}
+              >
+                Convenio
+              </a>
+            </li>
+            <li>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => handleActivitySelection('Apertura')}
+              >
+                Apertura
+              </a>
+            </li>
+            <li>
+              <hr className="dropdown-divider" />
+            </li>
+            <li>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => handleActivitySelection('Programa')}
+              >
+                Programa
+              </a>
+            </li>
+            <li>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => handleActivitySelection('Cierre')}
+              >
+                Cierre
+              </a>
+            </li>
+          </ul>
+        </div>
         <div className="">
           <textarea
             className="form-control"
             placeholder="Describe las actividades realizadas"
             id="floatingTextarea2"
-            style={{ height: "100px" }} // Establece el estilo como un objeto JS
+            style={{ height: "100px" }}
+            value={selectedActivity ? `Actividad seleccionada: ${selectedActivity}` : ''}
+            readOnly
           ></textarea>
         </div>
       </div>
@@ -257,8 +337,8 @@ const Logbook = () => {
             </div>
           </div>
         </form>
-        <div class="d-grid gap-2">
-          <button class="btn btn-primary" type="button">
+        <div className="d-grid gap-2">
+          <button className="btn btn-primary" type="button">
             ENVIAR
           </button>
         </div>

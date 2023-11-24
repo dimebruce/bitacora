@@ -1,15 +1,28 @@
 import { Fragment } from 'react'
 import { useState } from 'react'
 import Logbook from './assets/components/Logbook'
+import Login from './assets/components/Login'
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleLogin = () => {
+    // Perform authentication logic (replace this with your actual authentication logic)
+    // For simplicity, let's assume the user is authenticated on button click
+    setIsAuthenticated(true);
+  };
 
   return (
     <>
-        <h1 className='text-center mt-5 fs-1 fw-bold'>Bitácora de <span className='text-primary'>Obra</span></h1>
-        <Logbook/>
+      <div>
+        {!isAuthenticated ? (
+          <Login onLogin={handleLogin} />
+        ) : (
+          <Logbook />
+        )}
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
